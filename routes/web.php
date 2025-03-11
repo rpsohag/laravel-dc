@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redis;
 
 Route::get('/', function () {
-    return view('welcome');
+    Redis::set('redis_test', "Hello world");
+
+    return Redis::get('redis_test');
 });

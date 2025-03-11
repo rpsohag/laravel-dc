@@ -79,12 +79,24 @@ services:
       - postgres
     networks:
       - laravel_network
+  redis:
+    image: redis/redis-stack
+    container_name: redis_laravel_factory
+    ports:
+      - "6379:6379"
+      - "8001:8001"
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - laravel_network
   
       
 volumes:
   storage:
   bootstrap_cache:
   vendor:
+  redis_data:
   postgres_data:
     driver: local
 
